@@ -56,9 +56,10 @@ for (let i = 0; i < URL.length; i++) {
         const specs = {};
     
         specs["variantName"] = document.querySelector(".displayInlineBlock").innerText || ""
-        specs["exShowroomPrice"] = "1000",
+        specs["exShowroomPrice"] = "N/A",
         specs["carId"]= "c03aef2e-1b00-4176-88c8-2d6de3c74b58"
-        specs["description"] = "hello"
+        specs["description"] = "N/A",
+        specs['specification'] = {}
         const sections = document.querySelectorAll('h3[data-attribute="scrolledItems"]');
     
         sections.forEach(section => {
@@ -67,13 +68,13 @@ for (let i = 0; i < URL.length; i++) {
     
             if (table && table.tagName === 'TABLE') {
                 const rows = table.querySelectorAll('tbody tr');
-                specs[sectionName] = {};
+                specs['specification'][sectionName] = {};
     
                 rows.forEach(row => {
                     const key = row.children[0].innerText.trim();
                     const iconCheck = row.querySelector('.icon-check');
                     const value =  row.children[1].innerText.trim() ==="" ?iconCheck ? true : false:row.children[1].innerText.trim();
-                    specs[sectionName][key] = value;
+                    specs['specification'][sectionName][key] = value;
                 });
             }
         });
@@ -81,6 +82,7 @@ for (let i = 0; i < URL.length; i++) {
         return specs;
     });
     loadData(variantMapper(data))
+    // console.log(variantMapper(data));
     // console.log(data);
     
     await browser.close();

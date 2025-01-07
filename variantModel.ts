@@ -158,7 +158,6 @@ interface VehicleSpecs {
     smokeHeadlamps?: boolean;
     trunkOpener?: string;
     heatedWingMirror?: boolean;
-    sunRoof?: boolean;
     additionalFeatures?: string;
   };
   safety: {
